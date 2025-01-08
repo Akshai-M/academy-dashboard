@@ -1,10 +1,11 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { Candidate } from "../types/candidate";
 
 interface AdminState {
-    admin: any[],
-    setAdmin: (admin: any[]) => void,
-    clearAdmin: () => void,
+    admin: Candidate[];
+    setAdmin: (admin: Candidate[]) => void;
+    clearAdmin: () => void;
 }
 
 export const useAdminStore = create<AdminState>()(
