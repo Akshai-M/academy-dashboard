@@ -5,21 +5,45 @@ const prisma = new PrismaClient();
 
 export async function POST(request: NextRequest) {
   try {
-    const { mobile } = await request.json();
+    const { mobile, isAdmin } = await request.json();
 
     if (!mobile) {
-      return NextResponse.json({ message: "Mobile is required" }, { status: 400 });
+      return NextResponse.json(
+        { message: "Mobile is required" },
+        { status: 400 }
+      );
     }
 
-    const student = await prisma.candidate_interviews.findUnique({
+    if (isAdmin) {
+      const res = NextResponse.json({ admin: true }, { status: 200 });
+      res.cookies.set("session", mobile, {
+        httpOnly: true,
+        secure: false, // change to true in production
+        sameSite: "strict",
+        path: "/",
+      });
+      return res;
+    }
+
+    const student = await prisma.candidate_interviews.findFirst({
       where: { mobile_number: mobile },
     });
 
     if (!student) {
-      return NextResponse.json({ message: "Student not found" }, { status: 404 });
+      return NextResponse.json(
+        { message: "Student not found" },
+        { status: 404 }
+      );
     }
 
-    return NextResponse.json(student);
+    const res = NextResponse.json(student, { status: 200 });
+    res.cookies.set("session", mobile, {
+      httpOnly: true,
+      secure: false, // change to true in production
+      sameSite: "strict",
+      path: "/",
+    });
+    return res;
   } catch (error) {
     console.error(error);
     return NextResponse.json({ message: "Server error" }, { status: 500 });
