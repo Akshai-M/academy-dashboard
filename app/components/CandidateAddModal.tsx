@@ -25,7 +25,20 @@ export default function CandidateAddModal({
     const [showStatusBar, setShowStatusBar] = React.useState<Checked>(true)
     const [showActivityBar, setShowActivityBar] = React.useState<Checked>(false)
     const [showPanel, setShowPanel] = React.useState<Checked>(false)
-  
+  const [formData, setFormData] = useState<Candidate>({
+    user_id: "",
+    candidate_name: "",
+    mobile_number: "",
+    candidate_email: "",
+    candidate_resume_link: "",
+    placement_status: "",
+    frontend_interview_date: "",
+    frontend_time_slot: "",
+    backend_interview_date: "",
+    backend_time_slot: "",
+    interview_status: "Scheduled",
+    meeting_link: "",
+  });
 
   const [frontendDate, setFrontendDate] = useState<Date | undefined>();
   const [frontendTime, setFrontendTime] = useState("10:00");
