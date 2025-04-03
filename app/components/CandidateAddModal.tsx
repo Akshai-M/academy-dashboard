@@ -74,7 +74,27 @@ export default function CandidateAddModal({
 
       const response = await axios.post("/api/addStudent", payload);
 
-      
+      if (response.status === 201) {
+        setMessage("Candidate created successfully!");
+        setFormData({
+          user_id: "",
+          candidate_name: "",
+          mobile_number: "",
+          candidate_email: "",
+          candidate_resume_link: "",
+          placement_status: "",
+          frontend_interview_date: "",
+          frontend_time_slot: "",
+          backend_interview_date: "",
+          backend_time_slot: "",
+          interview_status: "Scheduled",
+          meeting_link: "",
+        });
+        setFrontendDate(undefined);
+        setBackendDate(undefined);
+        setFrontendTime("10:00");
+        setBackendTime("10:00");
+        setIsModalOpen(false);
       }
     } catch (err: any) {
       setMessage(err?.response?.data?.message || "Server error");
