@@ -119,7 +119,66 @@ export default function CandidateAddModal({
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="p-6 space-y-6">
-          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label>UID *</label>
+              <input
+                required
+                type="text"
+                value={formData.user_id}
+                onChange={e => handleInputChange("user_id", e.target.value)}
+                className="w-full px-3 py-2 border rounded"
+              />
+            </div>
+            <div>
+              <label>Name *</label>
+              <input
+                required
+                type="text"
+                value={formData.candidate_name}
+                onChange={e => handleInputChange("candidate_name", e.target.value)}
+                className="w-full px-3 py-2 border rounded"
+              />
+            </div>
+            <div>
+              <label>Mobile *</label>
+              <input
+                required
+                type="tel"
+                value={formData.mobile_number}
+                onChange={e => handleInputChange("mobile_number", e.target.value)}
+                className="w-full px-3 py-2 border rounded"
+              />
+            </div>
+            <div>
+              <label>Email *</label>
+              <input
+                required
+                type="email"
+                value={formData.candidate_email}
+                onChange={e => handleInputChange("candidate_email", e.target.value)}
+                className="w-full px-3 py-2 border rounded"
+              />
+            </div>
+            <div>
+              <label>Resume Link</label>
+              <input
+                type="url"
+                value={formData.candidate_resume_link}
+                onChange={e => handleInputChange("candidate_resume_link", e.target.value)}
+                className="w-full px-3 py-2 border rounded"
+              />
+            </div>
+            <div>
+              <label>Placement Status</label>
+              <input
+                type="text"
+                value={formData.placement_status}
+                onChange={e => handleInputChange("placement_status", e.target.value)}
+                className="w-full px-3 py-2 border rounded"
+              />
+            </div>
+          </div>
 
           
             <div>
