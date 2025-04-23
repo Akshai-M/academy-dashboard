@@ -49,3 +49,12 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ message: "Server error" }, { status: 500 });
   }
 }
+
+export async function GET() {
+  try {
+    const adminData = await prisma.candidate_interviews.findMany()
+    return NextResponse.json(adminData, { status: 200 })
+  } catch (error) {
+    return NextResponse.json({ message: "Server error" }, { status: 500 })
+  }
+}
