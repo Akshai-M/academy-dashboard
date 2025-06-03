@@ -18,6 +18,7 @@ export default function Calendar24() {
         <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger asChild>
             <Button className="w-32 justify-between" type="button">
+              {date ? date.toLocaleDateString() : "Select date"}
               <ChevronDownIcon />
             </Button>
           </PopoverTrigger>
