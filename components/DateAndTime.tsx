@@ -23,7 +23,15 @@ export default function Calendar24() {
             </Button>
           </PopoverTrigger>
           <PopoverContent className="w-auto p-0" align="start">
-            
+            <Calendar
+              mode="single"
+              selected={date}
+              captionLayout="dropdown"
+              onSelect={date => {
+                setDate(date);
+                setOpen(false);
+              }}
+            />
           </PopoverContent>
         </Popover>
       </div>
