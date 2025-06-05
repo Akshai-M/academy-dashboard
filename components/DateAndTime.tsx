@@ -8,7 +8,17 @@ import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { Popover, PopoverTrigger, PopoverContent } from "./ui/popover";
 
-export default function Calendar24() {
+export default function Calendar24({
+  date,
+  setDate,
+  time,
+  setTime,
+}: {
+  date: Date | undefined;
+  setDate: (date: Date | undefined) => void;
+  time: string;
+  setTime: (time: string) => void;
+}) {
   const [open, setOpen] = React.useState(false);
 
   return (
