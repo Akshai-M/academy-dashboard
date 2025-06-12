@@ -180,7 +180,31 @@ export default function CandidateAddModal({
             </div>
           </div>
 
-          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="flex gap-4">
+            <div>
+              <label>Frontend Interview *</label>
+              <Calendar24
+                date={frontendDate}
+                setDate={setFrontendDate}
+                time={frontendTime}
+                setTime={setFrontendTime}
+              />
+            </div>
+            <div>
+              <label>Backend Interview *</label>
+              <Calendar24
+                date={backendDate}
+                setDate={setBackendDate}
+                time={backendTime}
+                setTime={setBackendTime}
+              />
+            </div>
+              <DropdownMenuRadioGroupDemo/>
+            
+
+            </div>
+          </div>
             <div>
               <label>Meeting Link</label>
               <input
