@@ -217,7 +217,22 @@ export default function CandidateAddModal({
 
           {message && <div className="p-2 bg-green-100 text-green-800">{message}</div>}
 
-         
+          <div className="flex justify-end gap-4">
+            <button
+              type="button"
+              onClick={() => setIsModalOpen(false)}
+              className="px-4 py-2 border rounded"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              disabled={loading}
+              className="px-4 py-2 bg-blue-600 text-white rounded disabled:opacity-50"
+            >
+              {loading ? "Adding..." : "Add Candidate"}
+            </button>
+          </div>
         </form>
       </div>
     </div>
