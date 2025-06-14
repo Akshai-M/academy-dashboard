@@ -2,12 +2,10 @@
 import { Calendar, Download, Eye, Filter, LogOut, Plus, Search } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import CandidateEditModal from "../components/CandidateEditModal";
-import { useModal } from "../modalContext";
 import CandidateAddModal from "../components/CandidateAddModal";
 import { useAdminStore } from "../store/adminStore";
 import axios from "axios";
-import { Candidate, CandidatePatchData } from "../types/candidate";
+import { CandidatePatchData } from "../types/candidate";
 
 export default function Dashboard(){
   const router = useRouter()
