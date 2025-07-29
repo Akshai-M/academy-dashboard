@@ -26,12 +26,18 @@ export default function LoginForm() {
       const res = await axios.post("/api/students", { mobile });
 
       if (res.status === 200) {
+        console.log("Called at login page")
         setStudent(res.data);
-        console.table(res.data);
         router.push("/report");
       }
-    } catch (err: any) {
-      if (err.response?.status === 404) {
+    } catch (err: unknown) {
+      if (
+        typeof err === "object" &&
+        err !== null &&
+        "response" in err &&
+        typeof (err as { response?: { status?: number } }).response === "object" &&
+        ((err as { response?: { status?: number } }).response?.status === 404)
+      ) {
         setError("No record found for this mobile number.");
       } else {
         setError("Something went wrong. Try again.");
