@@ -1,6 +1,6 @@
 import BackendEditModal from "./components/BackendEditModal";
-import CandidateEditModal from "./components/CandidateEditModal";
 import FrontendEditModal from "./components/FrontendEditModal";
+import CandidateEditModal from "./components/CandidateEditModal";
 import { ModalProvider } from "./modalContext";
 import "./globals.css";
 
