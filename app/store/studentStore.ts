@@ -1,9 +1,10 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { Candidate } from "../types/candidate";
 
 interface StudentState {
-  student: any | null;
-  setStudent: (student: any) => void;
+  student: Candidate | null;
+  setStudent: (student: Candidate) => void; 
   clearStudent: () => void;
 }
 
@@ -14,8 +15,6 @@ export const useStudentStore = create<StudentState>()(
       setStudent: (student) => set({ student }),
       clearStudent: () => set({ student: null }),
     }),
-    {
-      name: "student-storage",
-    }
+    { name: "student-storage" }
   )
 );
