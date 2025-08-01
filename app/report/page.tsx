@@ -1,13 +1,13 @@
 'use client'
 import React from 'react';
-import { User, Calendar, Clock, Phone, Mail, ExternalLink, ArrowLeft } from 'lucide-react';
-import { redirect, useRouter } from 'next/navigation';
+import { User, Phone, Mail, ArrowLeft } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { useStudentStore } from '../store/studentStore';
 
 
 
 export default function StudentReport() {
-  const  student  = useStudentStore((state) => state.student);
+  const  student  = useStudentStore((state) => state.student)
   
   const getStudentData = (student, key) => {
   if (!student) return 'N/A';
@@ -163,7 +163,7 @@ export default function StudentReport() {
         </div>
 
         {/* Skills Assessment */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {skillSections.map((section, index) => (
             <div key={index} className="bg-white rounded-xl shadow-lg p-6">
               <h3 className="text-xl font-semibold text-gray-900 mb-6">{section.title}</h3>
@@ -195,14 +195,14 @@ export default function StudentReport() {
               </div>
             </div>
           ))}
-        </div>
+        </div> */}
 
         {/* Feedback Section */}
         
           <div className="bg-white rounded-xl shadow-lg p-8 mt-8">
             <h3 className="text-xl font-semibold text-gray-900 mb-4">Interviewer Feedback</h3>
             <div className="bg-gray-50 rounded-lg p-6">
-              <p className="text-gray-700 leading-relaxed">{student.final_feedback || 'N/A'}</p>
+              <p className="text-gray-700 leading-relaxed">{student?.final_feedback || 'N/A'}</p>
             </div>
           </div>
       </div>
