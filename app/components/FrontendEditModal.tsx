@@ -222,7 +222,24 @@ export default function FrontendEditModal({
               </div>
             )}
 
-            
+            {/* --- ACTIONS --- */}
+            <div className="flex items-center justify-end space-x-4 pt-6">
+              <button
+                type="button"
+                onClick={closeModal}
+                className="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50"
+                disabled={loading}
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
+                disabled={loading}
+              >
+                {loading ? "Saving..." : "Save Changes"}
+              </button>
+            </div>
           </form>
         </div>
       </div>
