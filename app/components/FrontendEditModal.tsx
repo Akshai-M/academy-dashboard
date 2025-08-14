@@ -19,7 +19,6 @@ export default function FrontendEditModal({
 }: FrontendEditModalProps) {
   const { currentModal, closeModal } = useModal();
 
-  // ---------- INITIAL STATE ----------
   const initialFrontendFormData: CandidatePatchData = {
     fr_self_introduction: "",
     fr_communication: "",
@@ -43,7 +42,6 @@ export default function FrontendEditModal({
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
-  // ---------- EFFECT ----------
   useEffect(() => {
     if (candidate) {
       setFormData({
@@ -71,7 +69,6 @@ export default function FrontendEditModal({
     setMessage("");
   }, [candidate]);
 
-  // ---------- INPUT CHANGE ----------
   const handleInputChange = (
     field: keyof CandidatePatchData,
     value: string | number
@@ -82,7 +79,6 @@ export default function FrontendEditModal({
     }));
   };
 
-  // ---------- PATCH ONLY CHANGED FIELDS ----------
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!candidate?.user_id) {
@@ -94,7 +90,7 @@ export default function FrontendEditModal({
     setMessage("");
 
     try {
-      // Compare formData with originalData → keep only changed keys
+      
          const changedFields: Partial<CandidatePatchData> = {};
       (Object.keys(formData) as Array<keyof CandidatePatchData>).forEach((key) => {
         if (formData[key] !== originalData?.[key]) {
@@ -125,7 +121,6 @@ export default function FrontendEditModal({
     }
   };
 
-  // ---------- RENDER ----------
   const isOpen = currentModal === "frontend" && !!candidate;
   if (!isOpen) return null;
 
@@ -167,7 +162,7 @@ export default function FrontendEditModal({
           </div>
 
           <form onSubmit={handleSubmit} className="p-6 space-y-8">
-            {/* --- FORM CONTENT --- */}
+            
             <div className="space-y-6">
               <div className="bg-gray-50 p-4 rounded-lg space-y-4">
                 <h4 className="font-medium text-gray-800 border-b pb-2">Non-Technical</h4>
@@ -209,7 +204,7 @@ export default function FrontendEditModal({
               </div>
             </div>
 
-            {/* --- STATUS MESSAGE --- */}
+
             {message && (
               <div
                 className={`p-3 rounded-md ${
@@ -222,7 +217,7 @@ export default function FrontendEditModal({
               </div>
             )}
 
-            {/* --- ACTIONS --- */}
+
             <div className="flex items-center justify-end space-x-4 pt-6">
               <button
                 type="button"
