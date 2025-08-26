@@ -1,0 +1,176 @@
+"use client";
+import React, { useState, useEffect } from "react";
+import { CircleX } from "lucide-react";
+import { CandidatePatchData } from "../types/candidate";
+import Modal from "./Modal";
+import { useModal } from "../modalContext";
+import Navbar from "./Navbar";
+import axios from "axios";
+
+interface FrontendEditModalProps {
+  candidate?: CandidatePatchData | null;
+  onClose?: () => void;
+  onSave?: (data: CandidatePatchData) => void;
+}
+
+export default function FrontendEditModal({
+  candidate,
+  onSave,
+}: FrontendEditModalProps) {
+  const { currentModal, closeModal } = useModal();
+
+  // ---------- INITIAL STATE ----------
+  
+
+  const [formData, setFormData] = useState<CandidatePatchData>(initialFrontendFormData);
+  const [originalData, setOriginalData] = useState<CandidatePatchData | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+
+  // ---------- EFFECT ----------
+  useEffect(() => {
+    if (candidate) {
+      
+      setOriginalData(candidate);
+    } else {
+      setFormData(initialFrontendFormData);
+      setOriginalData(null);
+    }
+    setMessage("");
+  }, [candidate]);
+
+  // ---------- INPUT CHANGE ----------
+  const handleInputChange = (
+    field: keyof CandidatePatchData,
+    value: string | number
+  ) => {
+    setFormData((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
+
+  // ---------- PATCH ONLY CHANGED FIELDS ----------
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!candidate?.user_id) {
+      setMessage("User ID missing.");
+      return;
+    }
+
+    setLoading(true);
+    setMessage("");
+
+    try {
+      // Compare formData with originalData → keep only changed keys
+         const changedFields: Partial<CandidatePatchData> = {};
+      (Object.keys(formData) as Array<keyof CandidatePatchData>).forEach((key) => {
+        if (formData[key] !== originalData?.[key]) {
+          (changedFields as Record<string, string | number | undefined>)[key] = formData[key];
+        }
+      });
+
+      if (Object.keys(changedFields).length === 0) {
+        setMessage("No changes detected.");
+        setLoading(false);
+        return;
+      }
+
+      const res = await axios.patch(`/api/addStudent/${candidate.user_id}`, changedFields);
+
+      if (res.status === 200) {
+        setMessage("Changes saved successfully!");
+        onSave?.(res.data.updated);
+        setTimeout(() => closeModal(), 1200);
+      } else {
+        setMessage("Failed to update candidate details.");
+      }
+    } catch (error) {
+      console.error("Error updating candidate:", error);
+      setMessage("An error occurred while saving.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // ---------- RENDER ----------
+  const isOpen = currentModal === "frontend" && !!candidate;
+  if (!isOpen) return null;
+
+
+  const renderSelect = (label: string, field: keyof CandidatePatchData) => (
+    <div>
+      <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
+      <select
+        value={formData[field] || ""}
+        onChange={(e) => handleInputChange(field, e.target.value)}
+        className="w-full px-3 py-2 border border-gray-300 rounded text-sm"
+      >
+        <option value="">Select rating...</option>
+        {selectOptions.map((opt, i) => (
+          <option key={i} value={opt}>
+            {opt}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+
+  return (
+    <Modal isOpen={isOpen} onClose={closeModal}>
+      <div className="fixed inset-0 bg-opacity-50 bg-black/40 flex items-center justify-center p-4 z-50">
+        <div className="bg-white rounded-xl shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+          <div className="sticky top-0 bg-white shadow-sm px-6 py-4 flex items-center justify-between">
+            <Navbar />
+            <button onClick={closeModal} className="text-gray-500 hover:text-gray-400">
+              <CircleX className="w-6 h-6" />
+            </button>
+          </div>
+
+          <form onSubmit={handleSubmit} className="p-6 space-y-8">
+            {/* --- FORM CONTENT --- */}
+            <div className="space-y-6">
+              <div className="bg-gray-50 p-4 rounded-lg space-y-4">
+                <h4 className="font-medium text-gray-800 border-b pb-2">Non-Technical</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {renderSelect("Self Introduction", "fr_self_introduction")}
+                  {renderSelect("Communication", "fr_communication")}
+                </div>
+              </div>
+
+              
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Frontend Final Feedback
+                </label>
+                <textarea
+                  value={formData.frontend_feedback || ""}
+                  onChange={(e) => handleInputChange("frontend_feedback", e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                  rows={4}
+                  placeholder="Enter feedback"
+                />
+              </div>
+            </div>
+
+            {/* --- STATUS MESSAGE --- */}
+            {message && (
+              <div
+                className={`p-3 rounded-md ${
+                  message.includes("success")
+                    ? "bg-green-100 text-green-800"
+                    : "bg-red-100 text-red-800"
+                }`}
+              >
+                {message}
+              </div>
+            )}
+
+            
+          </form>
+        </div>
+      </div>
+    </Modal>
+  );
+}
