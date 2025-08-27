@@ -20,7 +20,23 @@ export default function FrontendEditModal({
   const { currentModal, closeModal } = useModal();
 
   // ---------- INITIAL STATE ----------
-  
+  const initialFrontendFormData: CandidatePatchData = {
+    fr_self_introduction: "",
+    fr_communication: "",
+    html_css_theory: "",
+    html_coding_easy: "",
+    html_coding_medium: "",
+    html_coding_hard: "",
+    javascript_theory: "",
+    javascript_coding_easy: "",
+    javascript_coding_medium: "",
+    javascript_coding_hard: "",
+    react_theory: "",
+    react_coding_easy: "",
+    react_coding_medium: "",
+    react_coding_hard: "",
+    frontend_feedback: "",
+  };
 
   const [formData, setFormData] = useState<CandidatePatchData>(initialFrontendFormData);
   const [originalData, setOriginalData] = useState<CandidatePatchData | null>(null);
