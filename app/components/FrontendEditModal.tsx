@@ -46,7 +46,23 @@ export default function FrontendEditModal({
   // ---------- EFFECT ----------
   useEffect(() => {
     if (candidate) {
-      
+      setFormData({
+        fr_self_introduction: candidate.fr_self_introduction || "",
+        fr_communication: candidate.fr_communication || "",
+        html_css_theory: candidate.html_css_theory || "",
+        html_coding_easy: candidate.html_coding_easy || "",
+        html_coding_medium: candidate.html_coding_medium || "",
+        html_coding_hard: candidate.html_coding_hard || "",
+        javascript_theory: candidate.javascript_theory || "",
+        javascript_coding_easy: candidate.javascript_coding_easy || "",
+        javascript_coding_medium: candidate.javascript_coding_medium || "",
+        javascript_coding_hard: candidate.javascript_coding_hard || "",
+        react_theory: candidate.react_theory || "",
+        react_coding_easy: candidate.react_coding_easy || "",
+        react_coding_medium: candidate.react_coding_medium || "",
+        react_coding_hard: candidate.react_coding_hard || "",
+        frontend_feedback: candidate.frontend_feedback || "",
+      });
       setOriginalData(candidate);
     } else {
       setFormData(initialFrontendFormData);
