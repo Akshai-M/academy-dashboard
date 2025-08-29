@@ -129,6 +129,13 @@ export default function FrontendEditModal({
   const isOpen = currentModal === "frontend" && !!candidate;
   if (!isOpen) return null;
 
+  const selectOptions = [
+    "1. Lacks basic details and context",
+    "2. Basic introduction with limited details.",
+    "3. Clear introduction with minimal details.",
+    "4. Includes relevant details and provides a good overview",
+    "5. Well-organized, engaging, and detailed introduction.",
+  ];
 
   const renderSelect = (label: string, field: keyof CandidatePatchData) => (
     <div>
