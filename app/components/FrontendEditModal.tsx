@@ -177,7 +177,23 @@ export default function FrontendEditModal({
                 </div>
               </div>
 
-              
+              <div className="bg-gray-50 p-4 rounded-lg space-y-4">
+                <h4 className="font-medium text-gray-800 border-b pb-2">Technical</h4>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {renderSelect("HTML & CSS Theory", "html_css_theory")}
+                  {renderSelect("HTML & CSS Easy", "html_coding_easy")}
+                  {renderSelect("HTML & CSS Medium", "html_coding_medium")}
+                  {renderSelect("HTML & CSS Hard", "html_coding_hard")}
+                  {renderSelect("JavaScript Theory", "javascript_theory")}
+                  {renderSelect("JavaScript Easy", "javascript_coding_easy")}
+                  {renderSelect("JavaScript Medium", "javascript_coding_medium")}
+                  {renderSelect("JavaScript Hard", "javascript_coding_hard")}
+                  {renderSelect("React Theory", "react_theory")}
+                  {renderSelect("React Easy", "react_coding_easy")}
+                  {renderSelect("React Medium", "react_coding_medium")}
+                  {renderSelect("React Hard", "react_coding_hard")}
+                </div>
+              </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
