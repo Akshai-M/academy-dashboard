@@ -12,7 +12,13 @@ interface LoginFormProps {
 
 export default function LoginForm() {
   const [mobile, setMobile] = useState('');
-  
+  const [error, setError] = useState('');
+  const [data, setData] = useState(null)
+  const [isLoading, setIsLoading] = useState(false);
+  const MOBILE_NUMBER = process.env.NEXT_PUBLIC_MOBILE_NUMBER
+  const ADMIN_NUMBER = process.env.NEXT_PUBLIC_ADMIN_NUMBER
+  const router = useRouter()
+  const { setStudent } = useStudentStore();
 
   const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
