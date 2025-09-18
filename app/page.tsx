@@ -25,7 +25,22 @@ export default function LoginForm() {
   setError('');
   setIsLoading(true);
 
- 
+  try {
+    const res = await axios.post('/api/data', { mobile });
+
+    if (res.status === 200) {
+      setStudent(res.data);
+      router.push('/students')
+    }
+  } catch (err: any) {
+    if (err.response?.status === 404) {
+      setError('No record found for this mobile number.');
+    } else {
+      setError('Something went wrong. Try again.');
+    }
+  } finally {
+    setIsLoading(false);
+  }
 };
 
 
