@@ -55,7 +55,29 @@ export default function LoginForm() {
           <p className="text-gray-600">Enter your registered mobile number to continue</p>
         </div>
 
-        
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <label htmlFor="mobile" className="block text-sm font-medium text-gray-700 mb-2">
+              Mobile Number
+            </label>
+            <div className="relative">
+              <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <input
+                type="tel"
+                id="mobile"
+                value={mobile}
+                onChange={(e) => setMobile(e.target.value)}
+                className="pl-10 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                placeholder="Enter mobile number"
+                required
+              />
+            </div>
+          </div>
+
+          
+
+          
+        </form>
       </div>
     </div>
   );
