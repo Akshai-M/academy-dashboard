@@ -223,7 +223,12 @@ export default function Dashboard(){
           </div>
         </div>
 
-        
+        {/* {filteredCandidates.length === 0 && (
+          <div className="text-center py-12">
+            <div className="text-gray-500 text-lg">No candidates found</div>
+            <p className="text-gray-400 mt-2">Try adjusting your search or filter criteria</p>
+          </div>
+        )} */}
       </div>
 
      
