@@ -49,7 +49,17 @@ export default function Dashboard(){
               </div>
               <div className="relative">
                 <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-                
+                <select
+                  value={"somethings"}
+                  onChange={(e) => setStatusFilter(e.target.value)}
+                  className="pl-10 pr-8 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none bg-white"
+                >
+                  <option value="all">All Status</option>
+                  <option value="Scheduled">Scheduled</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Completed">Completed</option>
+                  <option value="Cancelled">Cancelled</option>
+                </select>
               </div>
               
               <div className="relative">
