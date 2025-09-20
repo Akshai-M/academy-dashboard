@@ -93,7 +93,59 @@ export default function Dashboard(){
           </div>
         </div>
 
-        
+        {/* Stats */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+          <div className="bg-white rounded-xl shadow-lg p-6">
+            <div className="flex items-center">
+              <div className="bg-blue-100 w-12 h-12 rounded-lg flex items-center justify-center">
+                <Eye className="w-6 h-6 text-blue-600" />
+              </div>
+              <div className="ml-4">
+                <p className="text-sm font-medium text-gray-500">Total Candidates</p>
+                <p className="text-2xl font-bold text-gray-900">{}</p>
+              </div>
+            </div>
+          </div>
+          <div className="bg-white rounded-xl shadow-lg p-6">
+            <div className="flex items-center">
+              <div className="bg-yellow-100 w-12 h-12 rounded-lg flex items-center justify-center">
+                <Filter className="w-6 h-6 text-yellow-600" />
+              </div>
+              <div className="ml-4">
+                <p className="text-sm font-medium text-gray-500">Scheduled</p>
+                <p className="text-2xl font-bold text-gray-900">
+                  {/* {candidates.filter(c => c.interviewStatus === 'Scheduled').length} */}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="bg-white rounded-xl shadow-lg p-6">
+            <div className="flex items-center">
+              <div className="bg-green-100 w-12 h-12 rounded-lg flex items-center justify-center">
+                <Download className="w-6 h-6 text-green-600" />
+              </div>
+              <div className="ml-4">
+                <p className="text-sm font-medium text-gray-500">Completed</p>
+                <p className="text-2xl font-bold text-gray-900">
+                  {/* {candidates.filter(c => c.interviewStatus === 'Completed').length} */}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="bg-white rounded-xl shadow-lg p-6">
+            <div className="flex items-center">
+              <div className="bg-purple-100 w-12 h-12 rounded-lg flex items-center justify-center">
+                <Plus className="w-6 h-6 text-purple-600" />
+              </div>
+              <div className="ml-4">
+                <p className="text-sm font-medium text-gray-500">Success Rate</p>
+                <p className="text-2xl font-bold text-gray-900">
+                  {/* {candidates.length > 0 ? Math.round((candidates.filter(c => c.placementStatus).length / candidates.length) * 100) : 0}% */}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
 
        
 
