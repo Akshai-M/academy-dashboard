@@ -30,5 +30,25 @@ model candidate_interviews {
   communication             String?   @db.Text
   final_non_tech_score      Decimal?  @db.Decimal(3, 1)
 
+  html_css_theory           String?   @db.Text
+  html_coding_easy          String?   @db.Text
+  html_coding_medium        String?   @db.Text
+  html_coding_hard          String?   @db.Text
+  html_coding_overall_rating Decimal?  @db.Decimal(3, 1)
+  javascript_theory         String?   @db.Text
+  javascript_coding_easy    String?   @db.Text
+  javascript_coding_medium  String?   @db.Text
+  javascript_coding_hard    String?   @db.Text
+  javascript_overall_rating Decimal?  @db.Decimal(3, 1)
+  react_theory              String?   @db.Text
+  react_coding_easy         String?   @db.Text
+  react_coding_medium       String?   @db.Text
+  react_coding_hard         String?   @db.Text
+  react_overall_rating      Decimal?  @db.Decimal(3, 1)
+
+
+
+  
+
   @@map("candidate_interviews")
 }
