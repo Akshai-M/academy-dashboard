@@ -20,7 +20,46 @@ export default function Dashboard(){
         </div>
       </div>
 
-      
+      <div className="max-w-7xl mx-auto px-6 py-8">
+        {/* Controls */}
+        <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
+            <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Search candidates..."
+                //   value={searchTerm}
+                //   onChange={(e) => setSearchTerm(e.target.value)}
+                  className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent w-full sm:w-64"
+                />
+              </div>
+              <div className="relative">
+                <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                
+              </div>
+              
+              <div className="relative">
+                <input
+                  type="date"
+                //   value={dateFilter}
+                //   onChange={(e) => setDateFilter(e.target.value)}
+                  className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  placeholder="Filter by date"
+                />
+              </div>
+            </div>
+            
+          </div>
+        </div>
+
+        
+
+       
+
+        
+      </div>
 
      
 
