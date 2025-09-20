@@ -10,7 +10,7 @@ export default function LoginForm() {
   const [mobile, setMobile] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false)
+  const [isAdmin, setIsAdmin] = useState(false);
   const ADMIN_NUMBER = process.env.NEXT_PUBLIC_ADMIN_NUMBER;
   const router = useRouter();
   const { setStudent } = useStudentStore();
@@ -21,12 +21,10 @@ export default function LoginForm() {
     setIsLoading(true);
 
     try {
-    
-      if ( mobile.length== 36 && mobile === ADMIN_NUMBER) {
-        setIsAdmin(true)
-        return
+      if (mobile.length == 36 && mobile === ADMIN_NUMBER) {
+        setIsAdmin(true);
+        return;
       }
-
 
       const res = await axios.post("/api/students", { mobile });
 
@@ -44,9 +42,9 @@ export default function LoginForm() {
       setIsLoading(false);
     }
   };
-      if(isAdmin) {return (<Dashboard/>)}
-
-
+  if (isAdmin) {
+    return <Dashboard />;
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
@@ -63,7 +61,10 @@ export default function LoginForm() {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label htmlFor="mobile" className="block text-sm font-medium text-gray-700 mb-2">
+            <label
+              htmlFor="mobile"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
               Mobile Number
             </label>
             <div className="relative">
