@@ -1,0 +1,24 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model candidate_interviews {
+  
+  user_id           String   @id @default(uuid()) @db.Uuid
+  candidate_name    String?  @db.VarChar(100)
+  mobile_number     String? @unique   @db.VarChar(15)
+  candidate_email   String?  @db.VarChar(150)
+  candidate_resume_link String? @db.Text
+
+  self_introduction         String?   @db.Text
+  project_explanation       String?   @db.Text
+  communication             String?   @db.Text
+  final_non_tech_score      Decimal?  @db.Decimal(3, 1)
+
+  @@map("candidate_interviews")
+}
