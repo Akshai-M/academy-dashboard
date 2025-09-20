@@ -15,7 +15,19 @@ export default function Dashboard(){
               <h1 className="text-2xl font-bold text-gray-900">Interview Dashboard</h1>
               <p className="text-gray-600 mt-1">Manage candidate interviews and assessments</p>
             </div>
-            
+            <div className="flex items-center space-x-4">
+              <button className="flex items-center px-4 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
+                <Download className="w-5 h-5 mr-2" />
+                Export
+              </button>
+              <button
+                // onClick={onLogout}
+                className="flex items-center px-4 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+              >
+                <LogOut className="w-5 h-5 mr-2" />
+                Logout
+              </button>
+            </div>
           </div>
         </div>
       </div>
