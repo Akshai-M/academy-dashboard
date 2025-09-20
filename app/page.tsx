@@ -20,7 +20,29 @@ export default function LoginForm() {
     setError("");
     setIsLoading(true);
 
+    try {
     
+      if ( mobile.length== 36 && mobile === ADMIN_NUMBER) {
+        setIsAdmin(true)
+        return
+      }
+
+
+      const res = await axios.post("/api/students", { mobile });
+
+      if (res.status === 200) {
+        setStudent(res.data);
+        router.push("/students");
+      }
+    } catch (err: any) {
+      if (err.response?.status === 404) {
+        setError("No record found for this mobile number.");
+      } else {
+        setError("Something went wrong. Try again.");
+      }
+    } finally {
+      setIsLoading(false);
+    }
   };
       if(isAdmin) {return (<Dashboard/>)}
 
