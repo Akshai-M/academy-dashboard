@@ -246,7 +246,13 @@ export default function Dashboard(){
         />
       )}
 
-      
+      {frontendEditCandidate && (
+        <FrontendEditModal
+          candidate={frontendEditCandidate}
+          onClose={handleFrontendEditClose}
+          onSave={handleFrontendSave}
+        />
+      )}
 
       
     </div>
