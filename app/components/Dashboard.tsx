@@ -231,7 +231,13 @@ export default function Dashboard(){
         )} */}
       </div>
 
-     
+      {/* {isModalOpen && (
+        <CandidateModal
+          candidate={editingCandidate}
+          onClose={handleModalClose}
+          onSave={handleSaveCandidate}
+        />
+      )}
 
       
 
