@@ -147,7 +147,81 @@ export default function Dashboard(){
           </div>
         </div>
 
-       
+        {/* Table */}
+        <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Candidate</th>
+                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contact</th>
+                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Interview Date</th>
+                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Overall Score</th>
+                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-200">
+                {/* {filteredCandidates.map((candidate) => (
+                  <tr key={candidate.userId} className="hover:bg-gray-50 transition-colors">
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div>
+                        <div className="text-sm font-medium text-gray-900">{candidate.candidateName}</div>
+                        <div className="text-sm text-gray-500">ID: {candidate.userId.slice(0, 8)}...</div>
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm text-gray-900">{candidate.mobileNumber}</div>
+                      <div className="text-sm text-gray-500">{candidate.candidateMailId}</div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm text-gray-900">{candidate.interviewDate}</div>
+                      <div className="text-sm text-gray-500">{candidate.interviewTime}</div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getStatusBadge(candidate.interviewStatus)}`}>
+                        {candidate.interviewStatus}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm font-medium text-gray-900">{candidate.finalNonTechScore || 'N/A'}</div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                      <button
+                        onClick={() => handleViewClick(candidate)}
+                        className="text-green-600 hover:text-green-900 mr-4"
+                        title="View Performance"
+                      >
+                        <Eye className="w-4 h-4" />
+                      </button>
+                      <button
+                        onClick={() => handleEditClick(candidate)}
+                        className="text-blue-600 hover:text-blue-900 mr-2"
+                        title="Edit Candidate"
+                      >
+                        <Edit2 className="w-4 h-4" />
+                      </button>
+                      <button
+                        onClick={() => handleFrontendEditClick(candidate)}
+                        className="text-purple-600 hover:text-purple-900 mr-2"
+                        title="Edit Frontend Assessment"
+                      >
+                        <span className="text-xs font-medium">FE</span>
+                      </button>
+                      <button
+                        onClick={() => handleBackendEditClick(candidate)}
+                        className="text-orange-600 hover:text-orange-900"
+                        title="Edit Backend Assessment"
+                      >
+                        <span className="text-xs font-medium">BE</span>
+                      </button>
+                    </td>
+                  </tr>
+                ))} */}
+              </tbody>
+            </table>
+          </div>
+        </div>
 
         
       </div>
