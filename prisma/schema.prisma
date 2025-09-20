@@ -46,7 +46,21 @@ model candidate_interviews {
   react_coding_hard         String?   @db.Text
   react_overall_rating      Decimal?  @db.Decimal(3, 1)
 
-
+  python_theory             String?   @db.Text
+  python_coding_easy        String?   @db.Text
+  python_coding_medium      String?   @db.Text
+  python_coding_hard        String?   @db.Text
+  python_overall_rating     Decimal?  @db.Decimal(3, 1)
+  node_theory               String?   @db.Text
+  node_coding_easy          String?   @db.Text
+  node_coding_medium        String?   @db.Text
+  node_coding_hard          String?   @db.Text
+  node_overall_rating       Decimal?  @db.Decimal(3, 1)
+  sql_theory                String?   @db.Text
+  sql_coding_easy           String?   @db.Text
+  sql_coding_medium         String?   @db.Text
+  sql_coding_hard           String?   @db.Text
+  sql_overall_rating        Decimal?  @db.Decimal(3, 1)
 
   
 
