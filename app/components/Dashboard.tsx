@@ -254,7 +254,13 @@ export default function Dashboard(){
         />
       )}
 
-      
+      {backendEditCandidate && (
+        <BackendEditModal
+          candidate={backendEditCandidate}
+          onClose={handleBackendEditClose}
+          onSave={handleBackendSave}
+        />
+      )} */}
     </div>
   );
 }
