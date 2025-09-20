@@ -61,7 +61,18 @@ export default function Dashboard(){
                   <option value="Cancelled">Cancelled</option>
                 </select>
               </div>
-              
+              <div className="relative">
+                <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <select
+                //   value={dateType}
+                //   onChange={(e) => setDateType(e.target.value as 'frontend' | 'backend' | 'final')}
+                  className="pl-10 pr-8 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none bg-white"
+                >
+                  <option value="frontend">Frontend Date</option>
+                  <option value="backend">Backend Date</option>
+                  <option value="final">Final Date</option>
+                </select>
+              </div>
               <div className="relative">
                 <input
                   type="date"
