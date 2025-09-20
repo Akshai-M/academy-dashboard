@@ -239,7 +239,12 @@ export default function Dashboard(){
         />
       )}
 
-      
+      {viewingCandidate && (
+        <PerformanceModal
+          candidate={viewingCandidate}
+          onClose={handlePerformanceModalClose}
+        />
+      )}
 
       
 
