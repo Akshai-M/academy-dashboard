@@ -14,7 +14,13 @@ export default function LoginForm() {
   const router = useRouter();
   const { setStudent } = useStudentStore();
 
-  
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+    setIsLoading(true);
+
+    
+  };
   
 
   return (
