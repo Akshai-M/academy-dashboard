@@ -6,7 +6,13 @@ import axios from "axios";
 import { useStudentStore } from "../store/studentStore";
 
 export default function LoginForm() {
-  
+  const [mobile, setMobile] = useState("");
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const ADMIN_NUMBER = process.env.NEXT_PUBLIC_ADMIN_NUMBER;
+  const router = useRouter();
+  const { setStudent } = useStudentStore();
 
   
   
