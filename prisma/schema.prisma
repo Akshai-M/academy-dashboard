@@ -8,63 +8,58 @@ datasource db {
 }
 
 model candidate_interviews {
-  
-  user_id           String   @id @default(uuid()) @db.Uuid
-  candidate_name    String?  @db.VarChar(100)
-  mobile_number     String? @unique   @db.VarChar(15)
-  candidate_email   String?  @db.VarChar(150)
-  candidate_resume_link String? @db.Text
-
-  frontend_interview_date   DateTime? @db.Date
-  frontend_time_slot        String?   @db.VarChar(50)
-  backend_interview_date    DateTime? @db.Date
-  backend_time_slot         String?   @db.VarChar(50)
-  meeting_link              String?   @db.Text
-  interview_date            DateTime? @db.Date
-  interview_time            DateTime? @db.Time
-  interview_duration        String?   @db.VarChar(20)
-  interview_status          String?   @db.VarChar(50)
-
-  self_introduction         String?   @db.Text
-  project_explanation       String?   @db.Text
-  communication             String?   @db.Text
-  final_non_tech_score      Decimal?  @db.Decimal(3, 1)
-
-  html_css_theory           String?   @db.Text
-  html_coding_easy          String?   @db.Text
-  html_coding_medium        String?   @db.Text
-  html_coding_hard          String?   @db.Text
+  user_id                    String    @id @default(uuid()) @db.Uuid
+  candidate_name             String?   @db.VarChar(100)
+  mobile_number              String?   @db.VarChar(15)
+  frontend_interview_date    DateTime? @db.Date
+  frontend_time_slot         String?   @db.VarChar(50)
+  backend_interview_date     DateTime? @db.Date
+  backend_time_slot          String?   @db.VarChar(50)
+  candidate_email            String?   @db.VarChar(150)
+  candidate_resume_link      String?
+  meeting_link               String?
+  interview_duration         String?   @db.VarChar(20)
+  interview_status           String?   @db.VarChar(50)
+  self_introduction          String?
+  project_explanation        String?
+  communication              String?
+  final_non_tech_score       Decimal?  @db.Decimal(3, 1)
+  html_css_theory            String?
+  html_coding_easy           String?
+  html_coding_medium         String?
+  html_coding_hard           String?
   html_coding_overall_rating Decimal?  @db.Decimal(3, 1)
-  javascript_theory         String?   @db.Text
-  javascript_coding_easy    String?   @db.Text
-  javascript_coding_medium  String?   @db.Text
-  javascript_coding_hard    String?   @db.Text
-  javascript_overall_rating Decimal?  @db.Decimal(3, 1)
-  react_theory              String?   @db.Text
-  react_coding_easy         String?   @db.Text
-  react_coding_medium       String?   @db.Text
-  react_coding_hard         String?   @db.Text
-  react_overall_rating      Decimal?  @db.Decimal(3, 1)
-
-  python_theory             String?   @db.Text
-  python_coding_easy        String?   @db.Text
-  python_coding_medium      String?   @db.Text
-  python_coding_hard        String?   @db.Text
-  python_overall_rating     Decimal?  @db.Decimal(3, 1)
-  node_theory               String?   @db.Text
-  node_coding_easy          String?   @db.Text
-  node_coding_medium        String?   @db.Text
-  node_coding_hard          String?   @db.Text
-  node_overall_rating       Decimal?  @db.Decimal(3, 1)
-  sql_theory                String?   @db.Text
-  sql_coding_easy           String?   @db.Text
-  sql_coding_medium         String?   @db.Text
-  sql_coding_hard           String?   @db.Text
-  sql_overall_rating        Decimal?  @db.Decimal(3, 1)
-
-  final_feedback            String?   @db.Text
-  strongest_skill           String?   @db.Text
-  placement_status          String?   @db.VarChar(50)
+  javascript_theory          String?
+  javascript_coding_easy     String?
+  javascript_coding_medium   String?
+  javascript_coding_hard     String?
+  javascript_overall_rating  Decimal?  @db.Decimal(3, 1)
+  react_theory               String?
+  react_coding_easy          String?
+  react_coding_medium        String?
+  react_coding_hard          String?
+  react_overall_rating       Decimal?  @db.Decimal(3, 1)
+  python_theory              String?
+  python_coding_easy         String?
+  python_coding_medium       String?
+  python_coding_hard         String?
+  python_overall_rating      Decimal?  @db.Decimal(3, 1)
+  node_theory                String?
+  node_coding_easy           String?
+  node_coding_medium         String?
+  node_coding_hard           String?
+  node_overall_rating        Decimal?  @db.Decimal(3, 1)
+  sql_theory                 String?
+  sql_coding_easy            String?
+  sql_coding_medium          String?
+  sql_coding_hard            String?
+  sql_overall_rating         Decimal?  @db.Decimal(3, 1)
+  final_feedback             String?
+  strongest_skill            String?
+  placement_status           String?   @db.VarChar(50)
+  frontend_feedback          String?
+  meeting_recording          String?
+  final_non_tech             Int?
 
   @@map("candidate_interviews")
 }
