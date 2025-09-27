@@ -4,34 +4,25 @@ import { Phone, LogIn } from "lucide-react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { useStudentStore } from "./store/studentStore";
-import { useAdminStore } from "./store/adminStore";
 
 export default function LoginForm() {
-  const [mobile, setMobile] = useState("");
-  const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [mobile, setMobile] = useState<string>("");
+  const [error, setError] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const ADMIN_NUMBER = process.env.NEXT_PUBLIC_ADMIN_NUMBER;
   const router = useRouter();
   const { setStudent } = useStudentStore();
-  const { setAdmin } = useAdminStore();
-  const admin = useAdminStore((state) => state.admin);
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
     setIsLoading(true);
 
     try {
-
       if (mobile.length == 36 && mobile === ADMIN_NUMBER) {
-       
-        const res = await axios.get("/api/students");
-        setAdmin(res.data[0])
-        console.table(admin);
         router.push("/dashboard");
         return;
       }
 
-      
       const res = await axios.post("/api/students", { mobile });
 
       if (res.status === 200) {
