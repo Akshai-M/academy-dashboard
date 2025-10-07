@@ -1,38 +1,36 @@
 "use client"
 
 import * as React from "react"
-
 import { Button } from "../components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuLabel,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../components/ui/dropdown-menu"
 import { PanelTopOpen } from "lucide-react"
 
-export default function DropdownMenuRadioGroupDemo() {
-  const [position, setPosition] = React.useState("bottom")
+interface DropdownProps {
+  value: string
+  onChange: (value: string) => void
+}
 
+export default function DropdownMenuRadioGroupDemo({ value, onChange }: DropdownProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <div>
-        <label></label>
-        <Button variant="outline">Interview Status <PanelTopOpen /></Button>
-
-        </div>
-        
+        <Button variant="outline">
+          {value || "Select"} <PanelTopOpen />
+        </Button>
       </DropdownMenuTrigger>
+
       <DropdownMenuContent className="w-56">
-        <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
-          <DropdownMenuRadioItem value="completed">Completed</DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="scheduled">Scheduled</DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="rescheduled">Rescheduled</DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="pending">Pending</DropdownMenuRadioItem>
+        <DropdownMenuRadioGroup value={value} onValueChange={onChange}>
+          <DropdownMenuRadioItem value="Completed">Completed</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="Scheduled">Scheduled</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="Rescheduled">Rescheduled</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="Pending">Pending</DropdownMenuRadioItem>
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>
     </DropdownMenu>
