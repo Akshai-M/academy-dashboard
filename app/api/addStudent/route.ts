@@ -34,3 +34,16 @@ export async function POST(req: Request) {
     return NextResponse.json({ message: "Server error" }, { status: 500 });
   }
 }
+
+
+export async function PATCH(req: Request, { params }: { params: { id: string } }) {
+  const id = params.id;
+  const data = await req.json();
+
+  const updated = await prisma.candidate_interviews.update({
+    where: { user_id: id },
+    data,
+  });
+
+  return NextResponse.json(updated);
+}
