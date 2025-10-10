@@ -96,7 +96,14 @@ export default function StudentReport() {
     }
   ];
 
-
+  const getScoreColor = (score: string) => {
+    const numScore = parseFloat(score);
+    if (isNaN(numScore)) return 'text-gray-600 bg-gray-50'; // Handle non-numeric scores
+    if (numScore >= 4.5) return 'text-green-600 bg-green-50';
+    if (numScore >= 3.5) return 'text-blue-600 bg-blue-50';
+    if (numScore >= 2.5) return 'text-yellow-600 bg-yellow-50';
+    return 'text-red-600 bg-red-50';
+  };
 
 
 
