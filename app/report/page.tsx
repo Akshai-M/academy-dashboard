@@ -128,7 +128,26 @@ export default function StudentReport() {
         </button>
 
         {/* Header */}
-       
+        <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
+          <div className="flex items-start justify-between">
+            <div className="flex items-center space-x-4">
+              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center">
+                <User className="w-8 h-8 text-blue-600" />
+              </div>
+              <div>
+                <h1 className="text-3xl font-bold text-gray-900">{student?.candidate_name || 'N/A'}</h1>
+                <p className="text-gray-600 flex items-center mt-1">
+                  <Phone className="w-4 h-4 mr-2" />
+                  {student?.mobile_number || 'N/A'}
+                </p>
+                <p className="text-gray-600 flex items-center mt-1">
+                  <Mail className="w-4 h-4 mr-2" />
+                  {student?.candidate_email || 'N/A'}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
 
         {/* Performance Overview */}
        
