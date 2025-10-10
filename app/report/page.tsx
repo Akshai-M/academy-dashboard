@@ -16,7 +16,23 @@ export default function StudentReport() {
   "5": "green"
   }
   
- 
+  const getStudentData = (student, key) => {
+  if (!student) return 'N/A';
+  // Standardize key to match student object properties
+  const standardizedKey = key
+    .toLowerCase()
+    .replace(/ /g, '_')
+    .replace(/&/g, '')
+    .replace('html_&_css_theory', 'html_css_theory') // Special case for HTML & CSS
+    .replace('html_overall_rating', 'html_coding_overall_rating')
+    .replace('javascript_overall', 'javascript_overall_rating')
+    .replace('react_overall', 'react_overall_rating')
+    .replace('python_overall', 'python_overall_rating')
+    .replace('node_overall', 'node_overall_rating')
+    .replace('sql_overall', 'sql_overall_rating');
+
+  return student[standardizedKey] || 'N/A';
+};
 
 
 
