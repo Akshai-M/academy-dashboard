@@ -105,7 +105,11 @@ export default function StudentReport() {
     return 'text-red-600 bg-red-50';
   };
 
-
+  const getScoreWidth = (score: string) => {
+    const numScore = parseFloat(score);
+    if (isNaN(numScore)) return '0%'; // Handle non-numeric scores
+    return `${(numScore / 5) * 100}%`;
+  };
 
   const router = useRouter();
   function loginPage() {
