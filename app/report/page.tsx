@@ -33,7 +33,68 @@ export default function StudentReport() {
 
   return student[standardizedKey] || 'N/A';
 };
-
+ const skillSections = [
+    {
+      title: 'Frontend Skills',
+      skills: [
+        { name: 'HTML & CSS Theory', score: getStudentData(student, 'html_css_theory') },
+        { name: 'HTML Coding Easy', score: getStudentData(student, 'html_coding_easy') },
+        { name: 'HTML Coding Medium', score: getStudentData(student, 'html_coding_medium') },
+        { name: 'HTML Coding Hard', score: getStudentData(student, 'html_coding_hard') },
+        { name: 'HTML Overall Rating', score: getStudentData(student, 'html_coding_overall_rating'), isOverall: true },
+      ]
+    },
+    {
+      title: 'JavaScript',
+      skills: [
+        { name: 'JavaScript Theory', score: getStudentData(student, 'javascript_theory') },
+        { name: 'JavaScript Easy', score: getStudentData(student, 'javascript_coding_easy') },
+        { name: 'JavaScript Medium', score: getStudentData(student, 'javascript_coding_medium') },
+        { name: 'JavaScript Hard', score: getStudentData(student, 'javascript_coding_hard') },
+        { name: 'JavaScript Overall', score: getStudentData(student, 'javascript_overall_rating'), isOverall: true },
+      ]
+    },
+    {
+      title: 'React',
+      skills: [
+        { name: 'React Theory', score: getStudentData(student, 'react_theory') },
+        { name: 'React Easy', score: getStudentData(student, 'react_coding_easy') },
+        { name: 'React Medium', score: getStudentData(student, 'react_coding_medium') },
+        { name: 'React Hard', score: getStudentData(student, 'react_coding_hard') },
+        { name: 'React Overall', score: getStudentData(student, 'react_overall_rating'), isOverall: true },
+      ]
+    },
+    {
+      title: 'Backend Skills',
+      skills: [
+        { name: 'Python Theory', score: getStudentData(student, 'python_theory') },
+        { name: 'Python Easy', score: getStudentData(student, 'python_coding_easy') },
+        { name: 'Python Medium', score: getStudentData(student, 'python_coding_medium') },
+        { name: 'Python Hard', score: getStudentData(student, 'python_coding_hard') },
+        { name: 'Python Overall', score: getStudentData(student, 'python_overall_rating'), isOverall: true },
+      ]
+    },
+    {
+      title: 'Node.js',
+      skills: [
+        { name: 'Node Theory', score: getStudentData(student, 'node_theory') },
+        { name: 'Node Easy', score: getStudentData(student, 'node_coding_easy') },
+        { name: 'Node Medium', score: getStudentData(student, 'node_coding_medium') },
+        { name: 'Node Hard', score: getStudentData(student, 'node_coding_hard') },
+        { name: 'Node Overall', score: getStudentData(student, 'node_overall_rating'), isOverall: true },
+      ]
+    },
+    {
+      title: 'Database',
+      skills: [
+        { name: 'SQL Theory', score: getStudentData(student, 'sql_theory') },
+        { name: 'SQL Easy', score: getStudentData(student, 'sql_coding_easy') },
+        { name: 'SQL Medium', score: getStudentData(student, 'sql_coding_medium') },
+        { name: 'SQL Hard', score: getStudentData(student, 'sql_coding_hard') },
+        { name: 'SQL Overall', score: getStudentData(student, 'sql_overall_rating'), isOverall: true },
+      ]
+    }
+  ];
 
 
 
