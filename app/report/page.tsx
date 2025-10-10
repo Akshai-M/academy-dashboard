@@ -150,7 +150,24 @@ export default function StudentReport() {
         </div>
 
         {/* Performance Overview */}
-       
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+          <div className="bg-white rounded-xl shadow-lg p-6">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Non-Tech Score</h3>
+            <div className="text-3xl font-bold text-blue-600">{student?.fr_project_explanation_rating || 'N/A'}</div>
+          </div>
+          <div className="bg-white rounded-xl shadow-lg p-6">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Self Introduction</h3>
+            <div className="text-sm text-gray-600 line-clamp-3">{student?.fr_self_introduction || 'N/A'}</div>
+          </div>
+          <div className="bg-white rounded-xl shadow-lg p-6">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Communication</h3>
+            <div className="text-sm text-gray-600 line-clamp-3">{student?.fr_communication || 'N/A'}</div>
+          </div>
+          <div className="bg-white rounded-xl shadow-lg p-6">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Strongest Skill</h3>
+            <div className="text-sm font-medium text-green-600">{student?.strongest_skill || 'N/A'}</div>
+          </div>
+        </div>
 
         {/* Skills Assessment */}
         
