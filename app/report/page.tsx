@@ -206,7 +206,18 @@ export default function StudentReport() {
 
         {/* Feedback Section */}
         
-          
+          <div className="bg-white rounded-xl shadow-lg p-8 mt-8">
+            <h3 className="text-xl font-semibold text-gray-900 mb-4">Frontend Interview Feedback</h3>
+            <div className="bg-gray-50 rounded-lg p-6">
+              <p className="text-gray-700 leading-relaxed">{student?.frontend_feedback || 'N/A'}</p>
+            </div>
+          </div>
+          <div className="bg-white rounded-xl shadow-lg p-8 mt-8">
+            <h3 className="text-xl font-semibold text-gray-900 mb-4">Backend Interview Feedback</h3>
+            <div className="bg-gray-50 rounded-lg p-6">
+              <p className="text-gray-700 leading-relaxed">{student?.backend_feedback || 'N/A'}</p>
+            </div>
+          </div>
       </div>
     </div>
   );
