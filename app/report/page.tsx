@@ -170,7 +170,39 @@ export default function StudentReport() {
         </div>
 
         {/* Skills Assessment */}
-        
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {skillSections.map((section, index) => (
+            <div key={index} className="bg-white rounded-xl shadow-lg p-6">
+              <h3 className="text-xl font-semibold text-gray-900 mb-6">{section.title}</h3>
+              <div className="space-y-4">
+                {section.skills.map((skill, skillIndex) => (
+                  skill.score && (
+                    <div key={skillIndex} className={`p-3 rounded-lg ${skill.isOverall ? 'bg-blue-50 border border-blue-200' : ''}`}>
+                      <div className="flex items-center justify-between mb-2">
+                        <span className={`text-sm font-medium ${skill.isOverall ? 'text-blue-900' : 'text-gray-700'}`}>
+                          {skill.name}
+                        </span>
+                        <span className={`px-2 py-1 rounded text-xs font-medium ${getScoreColor(skill.score.toString())}`}>
+                          {skill.score}/5
+                        </span>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-2">
+                        <div
+                          className={`h-2 rounded-full transition-all duration-500 ${
+                            parseFloat(skill.score.toString()) >= 4.5 ? 'bg-green-500' :
+                            parseFloat(skill.score.toString()) >= 3.5 ? 'bg-blue-500' :
+                            parseFloat(skill.score.toString()) >= 2.5 ? 'bg-yellow-500' : 'bg-red-500'
+                          }`}
+                          style={{ width: getScoreWidth(skill.score.toString()) }}
+                        />
+                      </div>
+                    </div>
+                  )
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
 
         {/* Feedback Section */}
         
