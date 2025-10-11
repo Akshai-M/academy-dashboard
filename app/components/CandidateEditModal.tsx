@@ -100,7 +100,41 @@ export default function CandidateEditModal({ candidate }: CandidateEditModalProp
     setLoading(true);
     setMessage("");
 
-    
+    try {
+      
+      
+      const diff: Partial<CandidatePatchData> = {};
+      if (originalData) {
+              (Object.keys(formData) as Array<keyof CandidatePatchData>).forEach((key) => {
+                if (formData[key] !== originalData?.[key]) {
+                  (diff as Record<string, string | number | undefined>)[key] = formData[key];
+                }
+              });
+      }
+
+      if (Object.keys(diff).length === 0) {
+        setMessage("No changes detected.");
+        setLoading(false);
+        return;
+      }
+
+      const res = await axios.patch(`/api/addStudent/${formData.user_id}`, diff);
+
+      if (res.status === 200) {
+        setMessage("Candidate details updated successfully!");
+        
+        setTimeout(() => {
+          closeModal();
+        }, 1500);
+      } else {
+        setMessage("Failed to update candidate details.");
+      }
+    } catch (err) {
+      console.error("Error updating candidate:", err);
+      setMessage("An error occurred while updating candidate details.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const isOpen = currentModal === "candidate" && !!candidate;
