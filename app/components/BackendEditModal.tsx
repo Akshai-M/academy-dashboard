@@ -50,7 +50,35 @@ export default function BackendEditModal({
   const isOpen = currentModal === "backend" && !!candidate;
 
   
- 
+  useEffect(() => {
+    if (candidate) {
+      setFormData({
+        be_self_introduction: candidate.be_self_introduction || "",
+        be_communication: candidate.be_communication || "",
+        python_theory: candidate.python_theory || "",
+        python_coding_easy: candidate.python_coding_easy || "",
+        python_coding_medium: candidate.python_coding_medium || "",
+        python_coding_hard: candidate.python_coding_hard || "",
+        python_overall_rating: candidate.python_overall_rating || 0,
+        node_theory: candidate.node_theory || "",
+        node_coding_easy: candidate.node_coding_easy || "",
+        node_coding_medium: candidate.node_coding_medium || "",
+        node_coding_hard: candidate.node_coding_hard || "",
+        node_overall_rating: candidate.node_overall_rating || 0,
+        sql_theory: candidate.sql_theory || "",
+        sql_coding_easy: candidate.sql_coding_easy || "",
+        sql_coding_medium: candidate.sql_coding_medium || "",
+        sql_coding_hard: candidate.sql_coding_hard || "",
+        sql_overall_rating: candidate.sql_overall_rating || 0,
+        backend_feedback: candidate.backend_feedback || "",
+      });
+      setOriginalData(candidate);
+    } else {
+      setFormData(initialBackendFormData);
+      setOriginalData(null);
+    }
+    setMessage("");
+  }, [candidate]);
 
   const handleInputChange = (
     field: keyof CandidatePatchData,
