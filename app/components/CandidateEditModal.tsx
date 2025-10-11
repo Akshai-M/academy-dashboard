@@ -55,7 +55,21 @@ export default function CandidateEditModal({ candidate }: CandidateEditModalProp
 
   useEffect(() => {
     if (candidate) {
-      
+      setFormData({
+        user_id: candidate.user_id || "",
+        candidate_name: candidate.candidate_name || "",
+        mobile_number: candidate.mobile_number || "",
+        candidate_email: candidate.candidate_email || "",
+        candidate_resume_link: candidate.candidate_resume_link || "",
+        placement_status: candidate.placement_status || "Pending",
+        frontend_interview_date: candidate.frontend_interview_date || "",
+        frontend_time_slot: candidate.frontend_time_slot || "",
+        backend_interview_date: candidate.backend_interview_date || "",
+        backend_time_slot: candidate.backend_time_slot || "",
+        interview_status: candidate.interview_status || "Scheduled",
+        meeting_link: candidate.meeting_link || "",
+        company: candidate.company || ""
+      });
 
       setOriginalData(candidate);
       setFrontendDate(parseDate(candidate.frontend_interview_date));
