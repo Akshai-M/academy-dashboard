@@ -101,7 +101,35 @@ export default function BackendEditModal({
     setLoading(true);
     setMessage("");
 
-   
+    try {
+         const changedFields: Partial<CandidatePatchData> = {};
+      (Object.keys(formData) as Array<keyof CandidatePatchData>).forEach((key) => {
+        if (formData[key] !== originalData?.[key]) {
+          (changedFields as Record<string, string | number | undefined>)[key] = formData[key];
+        }
+      });
+
+      if (Object.keys(changedFields).length === 0) {
+        setMessage("No changes detected.");
+        setLoading(false);
+        return;
+      }
+
+      const res = await axios.patch(`/api/addStudent/${candidate.user_id}`, changedFields);
+
+      if (res.status === 200) {
+        setMessage("Changes saved successfully!");
+        onSave?.(res.data.updated);
+        setTimeout(() => closeModal(), 1200);
+      } else {
+        setMessage("Failed to update candidate details.");
+      }
+    } catch (error) {
+      console.error("Error updating candidate:", error);
+      setMessage("An error occurred while saving.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const selectOptions = [
