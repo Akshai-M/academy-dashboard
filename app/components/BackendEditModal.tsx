@@ -187,7 +187,8 @@ export default function BackendEditModal({
                   {renderSelect("Communication", "be_communication")}
                 </div>
               </div>
-              
+
+              {/* Technical */}
               <div className="bg-gray-50 p-4 rounded-lg space-y-4">
                 <h4 className="font-medium text-gray-800 border-b pb-2">Technical</h4>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -207,7 +208,20 @@ export default function BackendEditModal({
               </div>
 
 
-              
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Backend Final Feedback
+                </label>
+                <textarea
+                  value={formData.backend_feedback || ""}
+                  onChange={(e) =>
+                    handleInputChange("backend_feedback", e.target.value)
+                  }
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                  rows={4}
+                  placeholder="Enter backend feedback"
+                />
+              </div>
             </div>
 
 
