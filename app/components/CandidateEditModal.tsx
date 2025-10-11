@@ -17,7 +17,21 @@ interface CandidateEditModalProps {
   onSave?: (data: CandidatePatchData) => void;
 }
 
-
+const initialFormData: CandidatePatchData = {
+  user_id: "",
+  candidate_name: "",
+  mobile_number: "",
+  candidate_email: "",
+  candidate_resume_link: "",
+  placement_status: "Pending",
+  frontend_interview_date: "",
+  frontend_time_slot: "",
+  backend_interview_date: "",
+  backend_time_slot: "",
+  interview_status: "Scheduled",
+  meeting_link: "",
+  company: ""
+};
 
 export default function CandidateEditModal({ candidate }: CandidateEditModalProps) {
   const { currentModal, closeModal } = useModal();
