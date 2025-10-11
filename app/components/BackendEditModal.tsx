@@ -91,6 +91,26 @@ export default function BackendEditModal({
   };
 
   
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!candidate?.user_id) {
+      setMessage("User ID missing.");
+      return;
+    }
+
+    setLoading(true);
+    setMessage("");
+
+   
+  };
+
+  const selectOptions = [
+    "1. Lacks basic details and context",
+    "2. Basic introduction with limited details.",
+    "3. Clear introduction with minimal details.",
+    "4. Includes relevant details and provides a good overview",
+    "5. Well-organized, engaging, and detailed introduction.",
+  ];
 
   
 
