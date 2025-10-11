@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-import { Button } from "../components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,7 +8,6 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "../components/ui/dropdown-menu"
-import { PanelTopOpen } from "lucide-react"
 
 interface DropdownProps {
   value: string

@@ -28,9 +28,9 @@ export default function PlacedDropDown({ value, onChange }: DropdownProps) {
       <DropdownMenuContent className="w-56">
         <DropdownMenuRadioGroup value={value} onValueChange={onChange}>
           <DropdownMenuRadioItem value="Pending">Pending</DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="Completed">On-Campus</DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="Scheduled">External</DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="Rescheduled">Nxtwave</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="On-Campus">On-Campus</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="External">External</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="Nxtwave">Nxtwave</DropdownMenuRadioItem>
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>
     </DropdownMenu>
