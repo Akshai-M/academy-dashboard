@@ -187,8 +187,24 @@ export default function BackendEditModal({
                   {renderSelect("Communication", "be_communication")}
                 </div>
               </div>
-
               
+              <div className="bg-gray-50 p-4 rounded-lg space-y-4">
+                <h4 className="font-medium text-gray-800 border-b pb-2">Technical</h4>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {renderSelect("Python Theory", "python_theory")}
+                  {renderSelect("Python Easy", "python_coding_easy")}
+                  {renderSelect("Python Medium", "python_coding_medium")}
+                  {renderSelect("Python Hard", "python_coding_hard")}
+                  {renderSelect("Node Theory", "node_theory")}
+                  {renderSelect("Node Easy", "node_coding_easy")}
+                  {renderSelect("Node Medium", "node_coding_medium")}
+                  {renderSelect("Node Hard", "node_coding_hard")}
+                  {renderSelect("SQL Theory", "sql_theory")}
+                  {renderSelect("SQL Easy", "sql_coding_easy")}
+                  {renderSelect("SQL Medium", "sql_coding_medium")}
+                  {renderSelect("SQL Hard", "sql_coding_hard")}
+                </div>
+              </div>
 
 
               
