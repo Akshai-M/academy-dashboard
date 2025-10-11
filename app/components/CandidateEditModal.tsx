@@ -235,7 +235,55 @@ export default function CandidateEditModal({ candidate }: CandidateEditModalProp
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border-t pt-6">
               <div className="flex gap-2">
-                
+                <div className="pr-4">
+                  <label className="block text-sm font-medium text-gray-700">
+                    Frontend Interview *
+                  </label>
+                  <Calendar24
+                    date={frontendDate}
+                    setDate={setFrontendDate}
+                    time={frontendTime}
+                    setTime={setFrontendTime}
+                  />
+                </div>
+
+                <div className="pr-4">
+                  <label className="block text-sm font-medium text-gray-700">
+                    Backend Interview *
+                  </label>
+                  <Calendar24
+                    date={backendDate}
+                    setDate={setBackendDate}
+                    time={backendTime}
+                    setTime={setBackendTime}
+                  />
+                </div>
+              </div>
+
+              <div className="flex gap-4">
+                <div className="space-y-2">
+                  <label className="block text-sm font-medium text-gray-700">
+                    Interview Status *
+                  </label>
+                  <DropdownMenuRadioGroupDemo
+                    value={formData.interview_status ?? "Pending"}
+                    onChange={(val) => handleInputChange("interview_status", val)}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700">
+                Meeting Link
+              </label>
+              <input
+                type="url"
+                value={formData.meeting_link}
+                onChange={(e) => handleInputChange("meeting_link", e.target.value)}
+                className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+              />
+            </div>
 
             {message && (
               <div className="p-2 bg-green-100 text-green-800 rounded-md">
