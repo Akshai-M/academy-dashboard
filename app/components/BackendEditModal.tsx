@@ -7,7 +7,26 @@ import { useModal } from "../modalContext";
 import Navbar from "./Navbar";
 import axios from "axios";
 
-
+const initialBackendFormData: CandidatePatchData = {
+  be_self_introduction: "",
+  be_communication: "",
+  python_theory: "",
+  python_coding_easy: "",
+  python_coding_medium: "",
+  python_coding_hard: "",
+  python_overall_rating: 0,
+  node_theory: "",
+  node_coding_easy: "",
+  node_coding_medium: "",
+  node_coding_hard: "",
+  node_overall_rating: 0,
+  sql_theory: "",
+  sql_coding_easy: "",
+  sql_coding_medium: "",
+  sql_coding_hard: "",
+  sql_overall_rating: 0,
+  backend_feedback: "",
+};
 
 interface BackendEditModalProps {
   candidate?: CandidatePatchData | null;
