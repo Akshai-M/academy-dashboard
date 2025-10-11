@@ -212,7 +212,25 @@ export default function CandidateEditModal({ candidate }: CandidateEditModalProp
                 />
               </div>
 
-              
+              <div className="flex gap-2">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">Placement Status</label>
+                  <PlacedDropDown
+                    value={formData.placement_status ?? "Pending"}
+                    onChange={(val) => handleInputChange("placement_status", val)}
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">Company Name</label>
+                  <input
+                    type="text"
+                    value={formData.company}
+                    onChange={(e) => handleInputChange("company", e.target.value)}
+                    className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                  />
+                </div>
+              </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border-t pt-6">
