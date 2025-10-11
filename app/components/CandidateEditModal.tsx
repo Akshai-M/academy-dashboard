@@ -180,7 +180,27 @@ export default function CandidateEditModal({ candidate }: CandidateEditModalProp
                 />
               </div>
 
-              
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Mobile *</label>
+                <input
+                  required
+                  type="tel"
+                  value={formData.mobile_number}
+                  onChange={(e) => handleInputChange("mobile_number", e.target.value)}
+                  className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Email *</label>
+                <input
+                  required
+                  type="email"
+                  value={formData.candidate_email}
+                  onChange={(e) => handleInputChange("candidate_email", e.target.value)}
+                  className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                />
+              </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700">Resume Link</label>
