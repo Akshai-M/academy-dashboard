@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
       const res = NextResponse.json({ admin: true }, { status: 200 });
       res.cookies.set("session", mobile, {
         httpOnly: true,
-        secure: false, // change to true in production
+        secure: true,
         sameSite: "strict",
         path: "/",
       });
@@ -55,6 +55,6 @@ export async function GET() {
     const adminData = await prisma.candidate_interviews.findMany()
     return NextResponse.json(adminData, { status: 200 })
   } catch (error) {
-    return NextResponse.json({ message: "Server error" }, { status: 500 })
+    return NextResponse.json({ message: `Server error ${error}` }, { status: 500 })
   }
 }
