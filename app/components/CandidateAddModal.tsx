@@ -1,42 +1,34 @@
 "use client";
 
 import React, { useState } from "react";
-import { User, Calendar as CalendarIcon, CircleX } from "lucide-react";
+import { CircleX } from "lucide-react";
 import { Candidate } from "../types/candidate";
 import axios from "axios";
 import Calendar24 from "../../components/DateAndTime";
 import DropdownMenuRadioGroupDemo from "../../components/Dropdown";
-import { DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu"
-
+import PlacedDropDown from "../../components/PlacedDropDown";
 
 interface CandidateAddModalProps {
   isModalOpen: boolean;
   setIsModalOpen: (open: boolean) => void;
 }
 
-type Checked = DropdownMenuCheckboxItemProps["checked"]
-
-
 export default function CandidateAddModal({
   isModalOpen,
   setIsModalOpen,
 }: CandidateAddModalProps) {
-  
-    const [showStatusBar, setShowStatusBar] = React.useState<Checked>(true)
-    const [showActivityBar, setShowActivityBar] = React.useState<Checked>(false)
-    const [showPanel, setShowPanel] = React.useState<Checked>(false)
   const [formData, setFormData] = useState<Candidate>({
     user_id: "",
     candidate_name: "",
     mobile_number: "",
     candidate_email: "",
     candidate_resume_link: "",
-    placement_status: "",
+    placement_status: "Pending",
     frontend_interview_date: "",
     frontend_time_slot: "",
     backend_interview_date: "",
     backend_time_slot: "",
-    interview_status: "Scheduled",
+    interview_status: "Pending",
     meeting_link: "",
   });
 
@@ -49,7 +41,7 @@ export default function CandidateAddModal({
   const [message, setMessage] = useState("");
 
   const handleInputChange = (field: keyof Candidate, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   if (!isModalOpen) return null;
@@ -82,12 +74,12 @@ export default function CandidateAddModal({
           mobile_number: "",
           candidate_email: "",
           candidate_resume_link: "",
-          placement_status: "",
+          placement_status: "Pending",
           frontend_interview_date: "",
           frontend_time_slot: "",
           backend_interview_date: "",
           backend_time_slot: "",
-          interview_status: "Scheduled",
+          interview_status: "Pending",
           meeting_link: "",
         });
         setFrontendDate(undefined);
@@ -96,10 +88,14 @@ export default function CandidateAddModal({
         setBackendTime("10:00");
         setIsModalOpen(false);
       }
-    } catch (err: any) {
-      setMessage(err?.response?.data?.message || "Server error");
-    } finally {
-      setLoading(false);
+    } catch (err: unknown) {
+      if (axios.isAxiosError(err)) {
+        setMessage(err.response?.data?.message || "Server error");
+      } else if (err instanceof Error) {
+        setMessage(err.message);
+      } else {
+        setMessage("Server error");
+      }
     }
   };
 
@@ -126,7 +122,7 @@ export default function CandidateAddModal({
                 required
                 type="text"
                 value={formData.user_id}
-                onChange={e => handleInputChange("user_id", e.target.value)}
+                onChange={(e) => handleInputChange("user_id", e.target.value)}
                 className="w-full px-3 py-2 border rounded"
               />
             </div>
@@ -136,7 +132,9 @@ export default function CandidateAddModal({
                 required
                 type="text"
                 value={formData.candidate_name}
-                onChange={e => handleInputChange("candidate_name", e.target.value)}
+                onChange={(e) =>
+                  handleInputChange("candidate_name", e.target.value)
+                }
                 className="w-full px-3 py-2 border rounded"
               />
             </div>
@@ -146,7 +144,9 @@ export default function CandidateAddModal({
                 required
                 type="tel"
                 value={formData.mobile_number}
-                onChange={e => handleInputChange("mobile_number", e.target.value)}
+                onChange={(e) =>
+                  handleInputChange("mobile_number", e.target.value)
+                }
                 className="w-full px-3 py-2 border rounded"
               />
             </div>
@@ -156,7 +156,9 @@ export default function CandidateAddModal({
                 required
                 type="email"
                 value={formData.candidate_email}
-                onChange={e => handleInputChange("candidate_email", e.target.value)}
+                onChange={(e) =>
+                  handleInputChange("candidate_email", e.target.value)
+                }
                 className="w-full px-3 py-2 border rounded"
               />
             </div>
@@ -165,57 +167,74 @@ export default function CandidateAddModal({
               <input
                 type="url"
                 value={formData.candidate_resume_link}
-                onChange={e => handleInputChange("candidate_resume_link", e.target.value)}
+                onChange={(e) =>
+                  handleInputChange("candidate_resume_link", e.target.value)
+                }
                 className="w-full px-3 py-2 border rounded"
               />
             </div>
-            <div>
-              <label>Placement Status</label>
-              <input
-                type="text"
-                value={formData.placement_status}
-                onChange={e => handleInputChange("placement_status", e.target.value)}
-                className="w-full px-3 py-2 border rounded"
-              />
-            </div>
+           <div className="flex flex-col">
+                <label>
+                  Placement through *
+                </label>
+                <PlacedDropDown
+                  value={formData.placement_status ?? "Pending"}
+                  onChange={(val) => handleInputChange("placement_status", val)}
+                  />
+              </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="flex gap-4">
-            <div>
-              <label>Frontend Interview *</label>
-              <Calendar24
-                date={frontendDate}
-                setDate={setFrontendDate}
-                time={frontendTime}
-                setTime={setFrontendTime}
-              />
-            </div>
-            <div>
-              <label>Backend Interview *</label>
-              <Calendar24
-                date={backendDate}
-                setDate={setBackendDate}
-                time={backendTime}
-                setTime={setBackendTime}
-              />
-            </div>
-              <DropdownMenuRadioGroupDemo/>
-            
-
+            <div className="flex gap-2">
+              <div className="border-r-2 pr-4">
+                <label>Frontend Interview *</label>
+                <Calendar24
+                  date={frontendDate}
+                  setDate={setFrontendDate}
+                  time={frontendTime}
+                  setTime={setFrontendTime}
+                />
+              </div>
+              {/* vertical line */}
+              <div className="w-1/2 flex justify-center items-center relative">
+                <div className="absolute left-[50] -translate-x-[50%] bg-[#f97316]"></div>
+              </div>
+              <div className="border-r-2 pr-4">
+                <label>Backend Interview *</label>
+                <Calendar24
+                  date={backendDate}
+                  setDate={setBackendDate}
+                  time={backendTime}
+                  setTime={setBackendTime}
+                />
+              </div>
+              <div className="space-y-2 border-r-2 px-4 mr-4">
+                <label className="block text-sm font-medium text-gray-700">
+                  Interview Status *
+                </label>
+                <DropdownMenuRadioGroupDemo
+                  value={formData.interview_status ?? "Pending"}
+                  onChange={(val) => handleInputChange("interview_status", val)}
+                />
+              </div>
+              
             </div>
           </div>
-            <div>
-              <label>Meeting Link</label>
-              <input
-                type="url"
-                value={formData.meeting_link}
-                onChange={e => handleInputChange("meeting_link", e.target.value)}
-                className="w-full px-3 py-2 border rounded"
-              />
-            </div>
+          <div>
+            <label>Meeting Link</label>
+            <input
+              type="url"
+              value={formData.meeting_link}
+              onChange={(e) =>
+                handleInputChange("meeting_link", e.target.value)
+              }
+              className="w-full px-3 py-2 border rounded"
+            />
+          </div>
 
-          {message && <div className="p-2 bg-green-100 text-green-800">{message}</div>}
+          {message && (
+            <div className="p-2 bg-green-100 text-green-800">{message}</div>
+          )}
 
           <div className="flex justify-end gap-4">
             <button
