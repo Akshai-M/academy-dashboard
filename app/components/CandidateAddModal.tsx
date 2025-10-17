@@ -107,7 +107,7 @@ export default function CandidateAddModal({
           <h2 className="text-xl font-semibold">Add Candidate</h2>
           <button
             onClick={() => setIsModalOpen(false)}
-            className="text-gray-600 hover:text-gray-800"
+            className="text-gray-600 hover:text-gray-800 cursor-pointer"
           >
             <CircleX className="w-6 h-6" />
           </button>
@@ -173,21 +173,21 @@ export default function CandidateAddModal({
                 className="w-full px-3 py-2 border rounded"
               />
             </div>
-           <div className="flex flex-col">
-                <label>
-                  Placement through *
-                </label>
-                <PlacedDropDown
-                  value={formData.placement_status ?? "Pending"}
-                  onChange={(val) => handleInputChange("placement_status", val)}
-                  />
-              </div>
+            <div className="flex flex-col">
+              <label>Placement through *</label>
+              <PlacedDropDown
+                value={formData.placement_status ?? "Pending"}
+                onChange={(val) => handleInputChange("placement_status", val)}
+              />
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="flex gap-2">
-              <div className="border-r-2 pr-4">
-                <label>Frontend Interview *</label>
+            <div className="flex flex-col md:flex-row divide-x-2 divide-gray-200">
+              <div className="p-4 md:pr-6 md:pl-0 flex-shrink-0">
+                <label className="block text-sm font-medium text-gray-700">
+                  Frontend Interview *
+                </label>
                 <Calendar24
                   date={frontendDate}
                   setDate={setFrontendDate}
@@ -195,12 +195,11 @@ export default function CandidateAddModal({
                   setTime={setFrontendTime}
                 />
               </div>
-              {/* vertical line */}
-              <div className="w-1/2 flex justify-center items-center relative">
-                <div className="absolute left-[50] -translate-x-[50%] bg-[#f97316]"></div>
-              </div>
-              <div className="border-r-2 pr-4">
-                <label>Backend Interview *</label>
+
+              <div className="p-4 md:px-6 flex-shrink-0">
+                <label className="block text-sm font-medium text-gray-700">
+                  Backend Interview *
+                </label>
                 <Calendar24
                   date={backendDate}
                   setDate={setBackendDate}
@@ -208,7 +207,8 @@ export default function CandidateAddModal({
                   setTime={setBackendTime}
                 />
               </div>
-              <div className="space-y-2 border-r-2 px-4 mr-4">
+
+              <div className="p-4 md:pl-6 flex-shrink-0">
                 <label className="block text-sm font-medium text-gray-700">
                   Interview Status *
                 </label>
@@ -217,8 +217,9 @@ export default function CandidateAddModal({
                   onChange={(val) => handleInputChange("interview_status", val)}
                 />
               </div>
-              
             </div>
+
+            <div className="hidden md:block"></div>
           </div>
           <div>
             <label>Meeting Link</label>
@@ -240,14 +241,14 @@ export default function CandidateAddModal({
             <button
               type="button"
               onClick={() => setIsModalOpen(false)}
-              className="px-4 py-2 border rounded"
+              className="px-4 py-2 border rounded-lg cursor-pointer"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={loading}
-              className="px-4 py-2 bg-blue-600 text-white rounded disabled:opacity-50"
+              className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 cursor-pointer"
             >
               {loading ? "Adding..." : "Add Candidate"}
             </button>
