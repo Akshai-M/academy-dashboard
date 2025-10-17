@@ -43,21 +43,21 @@ export default function Navbar() {
     <nav className=" flex gap-4 items-center bg-zinc-400/25 p-1 rounded">
       <button
         onClick={() => openModal("candidate")}
-        className={getButtonClasses("candidate")}
+        className={`${getButtonClasses("candidate")} cursor-pointer`}
       >
         Candidate Overview
       </button>
 
       <button
         onClick={() => openModal("frontend")}
-        className={getButtonClasses("frontend")}
+        className={`${getButtonClasses("frontend")} cursor-pointer`}
       >
         Frontend Edit
       </button>
 
       <button
         onClick={() => openModal("backend")}
-        className={getButtonClasses("backend")}
+        className={`${getButtonClasses("backend")} cursor-pointer`}
       >
         Backend Edit
       </button>
