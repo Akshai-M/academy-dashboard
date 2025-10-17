@@ -143,7 +143,7 @@ export default function CandidateEditModal({ candidate }: CandidateEditModalProp
   return (
     <Modal isOpen={isOpen} onClose={closeModal}>
       <div className="fixed inset-0 bg-black/40 flex items-center justify-center p-4 z-50">
-        <div className="bg-white rounded-xl shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+        <div className="bg-white rounded-xl shadow-xl w-full max-w-5xl max-h-[90vh] overflow-y-auto">
           <div className="sticky top-0 bg-white shadow-sm px-6 py-4 flex items-center justify-between">
             <Navbar />
             <button
@@ -295,7 +295,7 @@ export default function CandidateEditModal({ candidate }: CandidateEditModalProp
               <button
                 type="button"
                 onClick={closeModal}
-                className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 transition-colors"
+                className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors cursor-pointer"
               >
                 Cancel
               </button>
@@ -303,7 +303,7 @@ export default function CandidateEditModal({ candidate }: CandidateEditModalProp
               <button
                 type="submit"
                 disabled={loading}
-                className="px-4 py-2 bg-blue-600 text-white rounded-md font-medium hover:bg-blue-700 disabled:opacity-50 transition-colors"
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50 transition-colors"
               >
                 {loading ? "Saving..." : "Save Changes"}
               </button>
