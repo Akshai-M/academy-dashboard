@@ -1,5 +1,5 @@
-// components/Modal.tsx
 "use client";
+import { CircleX } from "lucide-react";
 import React, { useEffect } from "react";
 
 interface ModalProps {
@@ -37,9 +37,9 @@ export default function Modal({ isOpen, onClose, children }: ModalProps) {
         <button
           onClick={onClose}
           aria-label="Close modal"
-          className="absolute top-3 right-3 text-gray-500 hover:text-gray-800"
+          className="absolute top-3 right-3 text-gray-500 hover:text-gray-800 cursor-pointer"
         >
-          ✕
+          <CircleX/>
         </button>
         {children}
       </div>
