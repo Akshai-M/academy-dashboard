@@ -378,7 +378,7 @@ useEffect(() => {
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {filteredCandidates.map((i) => (
-                  <tr key={i.user_id} className="hover:bg-gray-50">
+                  <tr key={i.user_id} className=" even:bg-neutral-100">
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex text-sm font-medium text-gray-900">
                         <div
