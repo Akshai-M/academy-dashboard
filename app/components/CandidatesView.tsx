@@ -114,7 +114,7 @@ export default function PerformanceModal({
   }
 
   const nonTechScore = (fs: number, fp: number, fc: number): number => {
-    const rating = Math.round(((fs + fp + fc) / 4) * 10) / 10;
+    const rating = Math.round(((fs + fp + fc) / 3) * 10) / 10;
     return rating;
   };
   
@@ -205,10 +205,10 @@ export default function PerformanceModal({
           </div>
 
           {/* Navigation Tabs */}
-          <div className="flex space-x-1 mt-6 bg-white/20 bg-opacity-10 rounded-lg p-1">
+          <div className="flex space-x-1 mt-6 bg-white/20 bg-opacity-10 rounded-xl p-2 w-fit">
             <button
               onClick={() => setCurrentView("overview")}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors cursor-pointer ${
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors cursor-pointer ${
                 currentView === "overview"
                   ? "bg-white text-blue-600"
                   : "text-white hover:bg-white/20 hover:bg-opacity-20"
@@ -218,7 +218,7 @@ export default function PerformanceModal({
             </button>
             <button
               onClick={() => setCurrentView("frontend")}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors cursor-pointer ${
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors cursor-pointer ${
                 currentView === "frontend"
                   ? "bg-white text-blue-600"
                   : "text-white hover:bg-white/20 hover:bg-opacity-20"
@@ -228,7 +228,7 @@ export default function PerformanceModal({
             </button>
             <button
               onClick={() => setCurrentView("backend")}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors cursor-pointer ${
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors cursor-pointer ${
                 currentView === "backend"
                   ? "bg-white text-blue-600"
                   : "text-white hover:bg-white/20 hover:bg-opacity-20"
@@ -274,7 +274,7 @@ export default function PerformanceModal({
                     {candidate?.interview_status}
                   </span>
                 </div>
-                <div className="bg-gray-50 p-4 rounded-lg">
+                <div className="bg-gray-50 p-4 rounded-lg text-center">
                   <p className="text-sm font-medium text-gray-500 mb-1">
                     Non-Tech Score
                   </p>
@@ -302,28 +302,27 @@ export default function PerformanceModal({
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {overallRatings.map(
                     (rating) =>
-                      rating.score && (
                         <div
-                          key={rating.name}
+                          key={rating.name ? rating.name : ""}
                           className="bg-white border border-gray-200 rounded-lg p-4"
                         >
                           <div className="flex items-center justify-between mb-3">
                             <span className={`text-sm font-medium text-gray-700`}>
-                              {rating.name}
+                              {rating.name ? rating.name : "No rating"}
                             </span>
                             <span className="text-lg font-bold text-gray-900">
-                              {rating.score}/5
+                              {rating.score ? rating.score : "NA"}/5
                             </span>
                           </div>
                           <div className="w-full bg-gray-200 rounded-full h-3">
                             <div
-                              className={`h-3 rounded-full transition-all ${getScoreWidth(Math.round(Number(rating.score)).toString())} duration-500 bg-${
-                                getScoreColor(rating.score).split(' ')[1].split('-')[1]
+                              className={`h-3 rounded-full transition-all ${rating.score ? getScoreWidth(Math.round(Number(rating.score)).toString()) : "w-0"} duration-500 bg-${
+                                rating.score ? getScoreColor(rating.score).split(' ')[1].split('-')[1] : ""
                               }-500`}
                             />
                           </div>
                         </div>
-                      )
+                      
                   )}
                 </div>
               </div>
@@ -331,18 +330,18 @@ export default function PerformanceModal({
               {/* Interview Feedback */}
                 <div className="bg-gray-50 rounded-lg p-6">
                   <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                    Frontend Feedback
+                    Frontend Interview Feedback
                   </h3>
-                  <p className="text-gray-700 leading-relaxed">
+                  <p className="text-gray-700 leading-relaxed text-justify">
                     {candidate?.frontend_feedback || "No frontend feedback"}
                   </p>
                 </div>
               
                 <div className="bg-gray-50 rounded-lg p-6">
                   <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                    Backend Feedback
+                    Backend Interview Feedback
                   </h3>
-                  <p className="text-gray-700 leading-relaxed">
+                  <p className="text-gray-700 leading-relaxed text-justify">
                     {candidate?.backend_feedback || "No backend feedback"}
                   </p>
                 </div>
@@ -592,7 +591,6 @@ export default function PerformanceModal({
             Last updated: {new Date().toLocaleDateString()}
           </div>
           <div className="flex items-center space-x-2">
-            {candidate?.candidate_resume_link && (
               <a
                 href={candidate?.candidate_resume_link}
                 target="_blank"
@@ -600,42 +598,45 @@ export default function PerformanceModal({
                 className="flex items-center px-3 py-1 text-sm text-blue-600 hover:text-blue-700 border border-blue-200 rounded-md hover:bg-blue-50"
               >
                 <ExternalLink className="w-4 h-4 mr-1" />
-                Resume
+                {candidate?.candidate_resume_link ? "Resume" : "No resume link"}
               </a>
-            )}
-            {candidate?.meeting_link && (
+            
               <a
-                href={candidate?.meeting_link}
+                href={candidate?.fr_meet_link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center px-3 py-1 text-sm text-green-600 hover:text-green-700 border border-green-200 rounded-md hover:bg-green-50"
+                className="flex items-center px-3 py-1 text-sm text-blue-600 hover:text-blue-700 border border-green-200 rounded-md hover:bg-green-50"
               >
                 <ExternalLink className="w-4 h-4 mr-1" />
-                Meeting
+                {candidate?.fr_meet_link ? "Frontend meeting link": "No frontend meeting link"}
               </a>
-            )}
-            {candidate?.fr_meeting_recording && (
+              <a
+                href={candidate?.be_meet_link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center px-3 py-1 text-sm text-blue-600 hover:text-blue-700 border border-green-200 rounded-md hover:bg-green-50"
+              >
+                <ExternalLink className="w-4 h-4 mr-1" />
+                {candidate?.be_meet_link ? "Backend meeting link": "No backend meeting link"}
+              </a>
               <a
                 href={candidate?.fr_meeting_recording}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center px-3 py-1 text-sm text-green-600 hover:text-green-700 border border-green-200 rounded-md hover:bg-green-50"
+                className="flex items-center px-3 py-1 text-sm text-blue-600 hover:text-blue-700 border border-green-200 rounded-md hover:bg-green-50"
               >
                 <ExternalLink className="w-4 h-4 mr-1" />
-                Frontend Meeting
+                {candidate?.fr_meeting_recording ? "Frontend recording link" : "No frontend recording link"}
               </a>
-            )}
-            {candidate?.be_meeting_recording && (
               <a
                 href={candidate?.be_meeting_recording}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center px-3 py-1 text-sm text-green-600 hover:text-green-700 border border-green-200 rounded-md hover:bg-green-50"
+                className="flex items-center px-3 py-1 text-sm text-blue-600 hover:text-blue-700 border border-green-200 rounded-md hover:bg-green-50"
               >
                 <ExternalLink className="w-4 h-4 mr-1" />
-                Backend Meeting
+                {candidate?.be_meeting_recording ? "Backend recording link" : "No backend recording link"}
               </a>
-            )}
           </div>
         </div>
       </div>
