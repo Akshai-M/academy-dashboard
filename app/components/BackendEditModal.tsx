@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { CircleX } from "lucide-react";
+import { CircleDotDashed, CircleX } from "lucide-react";
 import { CandidatePatchData } from "../types/candidate";
 import Modal from "./Modal";
 import { useModal } from "../modalContext";
@@ -118,7 +118,7 @@ export default function BackendEditModal({
       handleInputChange("backend_feedback", data.enhanced);
     } catch (e) {
       console.error(e);
-      
+
       setError("Something went wrong");
     } finally {
       setAiLoading(false);
@@ -314,13 +314,17 @@ export default function BackendEditModal({
                   disabled={aiLoading}
                   className="absolute bottom-2 right-2 bg-blue-600 text-white text-sm px-3 py-1 rounded hover:bg-blue-700"
                 >
-                  {aiLoading ? "Refining..." : "AI ✨"}
+                  {aiLoading ? (
+                    <CircleDotDashed className="animate-spin" />
+                  ) : (
+                    "Enhance"
+                  )}
                 </button>
               </div>
 
               <div className="w-full md:w-1/2">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Backend Meeting Link
+                  Backend Recording Link
                 </label>
                 <textarea
                   value={formData.be_meeting_recording || ""}
@@ -362,7 +366,11 @@ export default function BackendEditModal({
                 className="bg-blue-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 flex items-center"
                 disabled={loading}
               >
-                {loading ? "Saving..." : "Save Changes"}
+                {loading ? (
+                  <CircleDotDashed className="animate-spin" />
+                ) : (
+                  "Save Changes"
+                )}
               </button>
             </div>
           </form>
