@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { CircleX } from "lucide-react";
+import { CircleDotDashed, CircleX } from "lucide-react";
 import { Candidate } from "../types/candidate";
 import axios from "axios";
 import Calendar24 from "../../components/DateAndTime";
@@ -28,7 +28,6 @@ export default function CandidateAddModal({
     backend_interview_date: "",
     backend_time_slot: "",
     interview_status: "Pending",
-    meeting_link: "",
   });
 
   const [frontendDate, setFrontendDate] = useState<Date | undefined>();
@@ -79,7 +78,6 @@ export default function CandidateAddModal({
           backend_interview_date: "",
           backend_time_slot: "",
           interview_status: "Pending",
-          meeting_link: "",
         });
         setFrontendDate(undefined);
         setBackendDate(undefined);
@@ -96,6 +94,7 @@ export default function CandidateAddModal({
         setMessage("Server error");
       }
     }
+    setLoading(false);
   };
 
   return (
@@ -208,17 +207,6 @@ export default function CandidateAddModal({
               />
             </div>
           </div>
-          <div>
-            <label>Meeting Link</label>
-            <input
-              type="url"
-              value={formData.meeting_link}
-              onChange={(e) =>
-                handleInputChange("meeting_link", e.target.value)
-              }
-              className="w-full px-3 py-2 border rounded"
-            />
-          </div>
 
           {message && (
             <div className="p-2 bg-green-100 text-green-800">{message}</div>
@@ -237,7 +225,11 @@ export default function CandidateAddModal({
               disabled={loading}
               className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 cursor-pointer"
             >
-              {loading ? "Adding..." : "Add Candidate"}
+              {loading ? (
+              <CircleDotDashed className="animate-spin" />
+                ) : (
+                "Add Candidate"
+              )}
             </button>
           </div>
         </form>
