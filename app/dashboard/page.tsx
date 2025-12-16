@@ -46,8 +46,10 @@ export default function Dashboard() {
   async function fetchAdminData() {
     const res = await axios.get("/api/students");
     setAdmin(res.data);
+    console.log(res.data)
     setFilteredCandidates(res.data);
   }
+  
 
   useEffect(() => {
     fetchAdminData();
@@ -193,7 +195,7 @@ useEffect(() => {
       <div className="max-w-7xl mx-auto px-6 py-8">
         <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
-            <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+            <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-2">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                 <input
@@ -222,11 +224,11 @@ useEffect(() => {
                   onChange={(e) => setStatusFilter(e.target.value)}
                   className="pl-10 cursor-pointer pr-8 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white"
                 >
-                  <option value="all">All Status</option>
-                  <option value="Pending">Pending</option>
-                  <option value="On-Campus">On-Campus</option>
-                  <option value="External">External</option>
-                  <option value="Nxtwave">Nxtwave</option>
+                  <option value="all">Placement Status</option>
+                  <option value="Pending">Not Placed</option>
+                  <option value="External">Placed External</option>
+                  <option value="College">Placed College</option>
+                  <option value="Nxtwave">Placed Nxtwave</option>
                 </select>
               </div>
 
@@ -290,13 +292,7 @@ useEffect(() => {
                   Nxtwave:{" "}
                   {admin.filter((i) => i.placement_status === "Nxtwave").length}
                 </label>
-                <label className="text-sm font-medium">
-                  External:{" "}
-                  {
-                    admin.filter((i) => i.placement_status === "External")
-                      .length
-                  }
-                </label>
+        
               </div>
             </div>
           </div>
@@ -383,7 +379,7 @@ useEffect(() => {
                       <div className="flex text-sm font-medium text-gray-900">
                         <div
                           className={`mt-2 mr-1 bg-${
-                            (i.placement_status === "Nxtwave" && "blue") || (i.placement_status === "Pending" && "yellow")
+                            i.color_palette ? i.color_palette?.toLocaleLowerCase() : ""
                           }-500 w-2 h-2 rounded-full`}
                         ></div>
                         {i.candidate_name ?? "NA"}
