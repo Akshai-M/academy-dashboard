@@ -2,6 +2,7 @@ export interface Candidate {
   user_id?: string;
   candidate_name?: string;
   mobile_number?: string;
+  mobile_hash?: string;
   frontend_interview_date?: string;
   frontend_time_slot?: string;
   backend_interview_date?: string;
@@ -12,6 +13,7 @@ export interface Candidate {
   interview_duration?: string;
   interview_status?: string;
   company?: string,
+  color_palette?: string
 
   fr_self_introduction?: string;
   fr_self_introduction_rating?: number;
@@ -19,6 +21,8 @@ export interface Candidate {
   fr_project_explanation_rating?: number;
   fr_communication?: string;
   fr_communication_rating?: number;
+  fr_meet_link?: string;
+  fr_meeting_recording?: string;
   frontend_feedback?: string;
 
 
@@ -28,6 +32,8 @@ export interface Candidate {
   be_project_explanation_rating?: number;
   be_communication?: string;
   be_communication_rating?: number;
+  be_meet_link?: string;
+  be_meeting_recording?: string;
   backend_feedback?: string;
   
   html_css_theory?: string;
@@ -70,8 +76,6 @@ export interface Candidate {
 
   strongest_skill?: string;
 
-  fr_meeting_recording?: string;
-  be_meeting_recording?: string;
 }
 
 export type CandidatePatchData = Partial<Candidate>;
